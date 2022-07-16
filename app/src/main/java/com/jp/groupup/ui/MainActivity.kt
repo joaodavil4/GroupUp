@@ -15,7 +15,9 @@ import com.jp.groupup.ui.MainApp
 import com.jp.groupup.ui.MainScreenScaffold
 import com.jp.groupup.ui.screens.home.HomeScreen
 import com.jp.groupup.ui.theme.GroupUpTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

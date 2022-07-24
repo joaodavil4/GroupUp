@@ -22,10 +22,9 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.jp.groupup.ui.MainViewModel
+import com.jp.groupup.R
 import com.jp.groupup.ui.navigation.NavDestinations.HOME
 import com.jp.groupup.ui.theme.GroupUpTheme
-import com.jp.groupup.R
 
 @Composable
 fun AppDrawer(

@@ -16,8 +16,11 @@ val LightBlueGray = Color(0xFF40474B)
 
 val Blue = Color(0xFF42A5F5)
 val Blue50 = Color(0xFFE3F2FD)
+val Blue100 = Color(0xFFBBDEFB)
 val Blue900 = Color(0xFF0D47A1)
 val BlueGray = Color(0xFF42464D)
 
 val Gray50 = Color(0xFFFAFAFA)
 val Gray500 = Color(0xFF9E9E9E)
+
+val groupUpGradient = listOf(Blue100, LightBlue100, Blue50)

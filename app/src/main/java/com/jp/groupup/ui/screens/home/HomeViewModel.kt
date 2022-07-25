@@ -22,7 +22,8 @@ class HomeViewModel @Inject constructor() : ViewModel(){
 
     private val mockTimes = arrayListOf(
         CalendarTimestamp("1 hour", Calendar.HOUR),
-        CalendarTimestamp("1 day", Calendar.DAY_OF_WEEK)
+        CalendarTimestamp("Saturday", Calendar.DAY_OF_WEEK),
+        CalendarTimestamp("Not sure", Calendar.DAY_OF_WEEK),
     )
 
     init {

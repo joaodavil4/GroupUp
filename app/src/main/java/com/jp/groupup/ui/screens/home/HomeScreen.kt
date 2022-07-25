@@ -5,6 +5,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.snapshots.SnapshotStateList
@@ -17,6 +18,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.jp.groupup.R
 import com.jp.groupup.domain.model.CalendarTimestamp
 import com.jp.groupup.ui.MainScreenScaffold
+import com.jp.groupup.ui.screens.home.components.GameItem
+import com.jp.groupup.ui.screens.home.components.ProfileItem
 import com.jp.groupup.ui.theme.GroupUpTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -29,7 +32,21 @@ fun HomeScreen(
 
     GroupUpTheme {
         // A surface container using the 'background' color from the theme
-        MainScreenScaffold(titleResId = R.string.app_name, openDrawer = { openDrawer() }) {
+        MainScreenScaffold(
+            titleResId = R.string.app_name,
+            openDrawer = { openDrawer() },
+            floatingActionButton = {
+                ExtendedFloatingActionButton(
+                    text = { Text("Schedule")},
+                    icon = { Icon(
+                        Icons.Default.DateRange,
+                        null,
+                    )},
+                    onClick = { /*TODO*/ }
+                )
+
+            }
+        ) {
             Surface(modifier = Modifier
                 .fillMaxSize()
                 .padding(it)) {
@@ -38,6 +55,8 @@ fun HomeScreen(
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     IHaveContent(iHaveItems, viewModel)
+                    IWantContent(iHaveItems, viewModel)
+                    FriendsContent(iHaveItems, viewModel)
                 }
             }
 
@@ -91,29 +110,43 @@ fun IWantContent(
     viewModel: HomeViewModel,
 ) {
     Text(
-        text = stringResource(id = R.string.i_want),
+        text = stringResource(id = R.string.games),
         fontWeight = FontWeight.Bold,
         fontSize = 22.sp,
     )
 
     LazyRow(
         modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight(),
+            .fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ){
         itemsIndexed(iHaveItems){ _, timeStamp ->
-            FilterChip(
-                label = { Text(text = timeStamp.tag) },
-                onClick = { viewModel.onClickTimeStamp(timeStamp) },
-                selectedIcon = {
-                    Icon(
-                        Icons.Default.Check,
-                        contentDescription = ""
-                    )
-                },
-                selected = viewModel.selectedTimeStamp.value?.equals(timeStamp) ?: false
-            )
+            GameItem()
+        }
+    }
+}
+
+@Composable
+fun FriendsContent(
+    iHaveItems: SnapshotStateList<CalendarTimestamp>,
+    viewModel: HomeViewModel,
+) {
+    Text(
+        text = stringResource(id = R.string.friends),
+        fontWeight = FontWeight.Bold,
+        fontSize = 22.sp,
+    )
+
+    LazyRow(
+        modifier = Modifier
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+    ){
+        itemsIndexed(iHaveItems){ _, timeStamp ->
+            ProfileItem(
+                profileImageId = R.drawable.ic_movie_placeholder,
+                profileName = "Name",
+                onClick = { /*TODO*/ })
         }
     }
 }

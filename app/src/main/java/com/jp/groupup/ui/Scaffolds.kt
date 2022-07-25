@@ -13,6 +13,7 @@ import androidx.compose.ui.res.stringResource
 fun MainScreenScaffold(
     @StringRes titleResId: Int,
     openDrawer: () -> Unit,
+    floatingActionButton: @Composable () -> Unit = {},
     content: @Composable (PaddingValues) -> Unit
 ) {
     Scaffold(
@@ -33,6 +34,8 @@ fun MainScreenScaffold(
                 )
             )
         },
-        content = content
+        floatingActionButton = floatingActionButton,
+        content = content,
+
     )
 }

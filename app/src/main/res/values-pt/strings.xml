@@ -5,5 +5,6 @@
     <!--    Home -->
     <string name="home_title">Home</string>
     <string name="i_have">Eu tenho</string>
+    <string name="i_want">Eu quero</string>
 
 </resources>

@@ -4,4 +4,5 @@
     <!--    Home -->
     <string name="home_title">Home</string>
     <string name="i_have">I have</string>
+    <string name="i_want">I want</string>
 </resources>

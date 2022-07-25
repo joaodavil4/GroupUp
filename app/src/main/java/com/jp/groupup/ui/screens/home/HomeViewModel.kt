@@ -1,6 +1,9 @@
 package com.jp.groupup.ui.screens.home
 
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
 import com.jp.groupup.domain.model.CalendarTimestamp
@@ -14,10 +17,24 @@ class HomeViewModel @Inject constructor() : ViewModel(){
     private val _timeStamps = mutableStateListOf<CalendarTimestamp>()
     val timeStamps: SnapshotStateList<CalendarTimestamp> = _timeStamps
 
-    val mockTimes = arrayListOf(CalendarTimestamp("1 hour", Calendar.HOUR))
+    private val _selectedTimeStamp: MutableState<CalendarTimestamp?> = mutableStateOf(null)
+    val selectedTimeStamp: State<CalendarTimestamp?> = _selectedTimeStamp
 
-    fun loadData(){
+    private val mockTimes = arrayListOf(
+        CalendarTimestamp("1 hour", Calendar.HOUR),
+        CalendarTimestamp("1 day", Calendar.DAY_OF_WEEK)
+    )
+
+    init {
+        loadData()
+    }
+
+    private fun loadData(){
         timeStamps.addAll(mockTimes)
+    }
+
+    fun onClickTimeStamp(timestamp: CalendarTimestamp){
+        _selectedTimeStamp.value = timestamp
     }
 
     sealed class HomeUiState {

@@ -26,7 +26,11 @@ fun MainScreenScaffold(
                             contentDescription = ""
                         )
                     }
-                }
+                },
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                    titleContentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                )
             )
         },
         content = content

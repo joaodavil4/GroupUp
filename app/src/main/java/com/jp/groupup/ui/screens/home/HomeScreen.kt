@@ -17,6 +17,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.jp.groupup.R
 import com.jp.groupup.domain.model.CalendarTimestamp
+import com.jp.groupup.domain.model.Game
+import com.jp.groupup.domain.model.Profile
 import com.jp.groupup.ui.MainScreenScaffold
 import com.jp.groupup.ui.screens.home.components.GameItem
 import com.jp.groupup.ui.screens.home.components.ProfileItem
@@ -29,6 +31,8 @@ fun HomeScreen(
 ){
     val viewModel = hiltViewModel<HomeViewModel>()
     val iHaveItems = viewModel.timeStamps
+    val games = listOf(Game("Overwatch"), Game("COD"))
+    val friends = listOf(Profile("Pedrinho"), Profile("Acorda"))
 
     GroupUpTheme {
         // A surface container using the 'background' color from the theme
@@ -55,8 +59,8 @@ fun HomeScreen(
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     IHaveContent(iHaveItems, viewModel)
-                    IWantContent(iHaveItems, viewModel)
-                    FriendsContent(iHaveItems, viewModel)
+                    GamesContent(games, viewModel)
+                    FriendsContent(friends, viewModel)
                 }
             }
 
@@ -103,10 +107,9 @@ fun IHaveContent(
 }
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun IWantContent(
-    iHaveItems: SnapshotStateList<CalendarTimestamp>,
+fun GamesContent(
+    games: List<Game>,
     viewModel: HomeViewModel,
 ) {
     Text(
@@ -120,15 +123,19 @@ fun IWantContent(
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ){
-        itemsIndexed(iHaveItems){ _, timeStamp ->
-            GameItem()
+        itemsIndexed(games){ _, game ->
+            GameItem(
+                game = game,
+                onGameClick = { viewModel.onClickGame(game) },
+                selectedGame = viewModel.selectedGame.value?.equals(game) ?: false,
+            )
         }
     }
 }
 
 @Composable
 fun FriendsContent(
-    iHaveItems: SnapshotStateList<CalendarTimestamp>,
+    friends: List<Profile>,
     viewModel: HomeViewModel,
 ) {
     Text(
@@ -142,11 +149,13 @@ fun FriendsContent(
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ){
-        itemsIndexed(iHaveItems){ _, timeStamp ->
+        itemsIndexed(friends){ _, friend ->
             ProfileItem(
                 profileImageId = R.drawable.ic_movie_placeholder,
-                profileName = "Name",
-                onClick = { /*TODO*/ })
+                profileName = friend.name,
+                onClick = { viewModel.onClickFriend(friend) },
+                selectedProfile = viewModel.selectedFriends.contains(friend)
+            )
         }
     }
 }

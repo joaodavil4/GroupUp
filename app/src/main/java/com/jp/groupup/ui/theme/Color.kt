@@ -24,3 +24,4 @@ val Gray50 = Color(0xFFFAFAFA)
 val Gray500 = Color(0xFF9E9E9E)
 
 val groupUpGradient = listOf(Blue100, LightBlue100, Blue50)
+val groupUpGradientReversed = groupUpGradient.reversed()

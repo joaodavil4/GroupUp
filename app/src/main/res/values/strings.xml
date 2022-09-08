@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name" translatable="false">GroupUp</string>
 
-    <!--    Home -->
+    <!--    AppDrawer-->
     <string name="home_title">Home</string>
+    <string name="about_title">About</string>
+
+    <!--    Home -->
     <string name="i_have">I have</string>
     <string name="games">Games</string>
     <string name="friends">Friends</string>

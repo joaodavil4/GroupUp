@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--    AppDrawer-->
+    <string name="home_title">Início</string>
+    <string name="about_title">Sobre</string>
 
     <!--    Home -->
-    <string name="home_title">Home</string>
     <string name="i_have">Eu tenho</string>
     <string name="games">Jogos</string>
     <string name="friends">Amigos</string>

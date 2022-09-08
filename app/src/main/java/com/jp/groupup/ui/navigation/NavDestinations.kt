@@ -1,5 +1,7 @@
 package com.jp.groupup.ui.navigation
 
-object NavDestinations {
-    const val HOME = "home"
+sealed class GroupUpScreen(val route: String) {
+    object Home : GroupUpScreen("Home")
+    object Game : GroupUpScreen("Game")
+    object Profile : GroupUpScreen("Profile")
 }

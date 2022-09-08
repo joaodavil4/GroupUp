@@ -6,20 +6,19 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.jp.groupup.ui.screens.home.HomeScreen
+import com.jp.groupup.ui.screens.home.MainScreen
 
 @Composable
 fun MainNavGraph(
     navController: NavHostController = rememberNavController(),
-    openDrawer: () -> Unit,
 ) {
     NavHost(
         navController = navController,
-        startDestination = NavDestinations.HOME,
+        startDestination = GroupUpScreen.Home.route,
     ) {
 
-        composable(route = NavDestinations.HOME) {
-            HomeScreen(openDrawer)
+        composable(route = GroupUpScreen.Home.route) {
+            MainScreen()
         }
     }
 }

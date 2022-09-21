@@ -3,10 +3,12 @@ package com.jp.groupup.ui
 import androidx.activity.compose.BackHandler
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.compose.rememberNavController
+import com.jp.groupup.ui.navigation.AppDrawer
 import com.jp.groupup.ui.navigation.MainNavGraph
 import com.jp.groupup.ui.theme.GroupUpTheme
 import kotlinx.coroutines.launch
@@ -23,8 +25,17 @@ fun MainApp(){
         if (drawerState.isOpen) {
             BackHandler { closeDrawer() }
         }
-
-        MainNavGraph(navController, openDrawer)
-
+        ModalNavigationDrawer(
+            drawerContent = {
+                AppDrawer(
+                    navController = navController,
+                    closeDrawer = closeDrawer
+                )
+            },
+            drawerState = drawerState,
+            gesturesEnabled = true,
+        ) {
+            MainNavGraph(navController, openDrawer)
+        }
     }
 }

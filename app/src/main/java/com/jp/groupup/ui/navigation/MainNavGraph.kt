@@ -11,6 +11,7 @@ import com.jp.groupup.ui.screens.home.MainScreen
 @Composable
 fun MainNavGraph(
     navController: NavHostController = rememberNavController(),
+    openDrawer: () -> Unit,
 ) {
     NavHost(
         navController = navController,
@@ -18,7 +19,7 @@ fun MainNavGraph(
     ) {
 
         composable(route = GroupUpScreen.Home.route) {
-            MainScreen()
+            MainScreen(openDrawer)
         }
     }
 }
